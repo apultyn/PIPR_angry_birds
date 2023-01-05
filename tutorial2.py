@@ -22,9 +22,25 @@ tries = 5
 force = 50
 angle = 0
 aim = True
-
+fire = False
+Vx = 0
+Vy = 0
 while tries > 0:
-    while aim == True
+    while fire:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+
+        player_rect.centerx += Vx
+        player_rect.centery -= Vy
+        screen.blit(background, (0, 0))
+        screen.blit(player_surf, player_rect)
+        screen.blit(enemy_surf, enemy_rect)
+        pygame.display.update()
+        Vy -= 5
+        clock.tick(10)
+    while aim:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -32,15 +48,23 @@ while tries > 0:
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
-                    angle = side_programms.change_angle('S', angle)
-                if event.key == pygame.K_s:
                     angle = side_programms.change_angle('N', angle)
+                if event.key == pygame.K_s:
+                    angle = side_programms.change_angle('S', angle)
                 if event.key == pygame.K_a:
                     angle = side_programms.change_angle('W', angle)
                 if event.key == pygame.K_d:
                     angle = side_programms.change_angle('E', angle)
+                if event.key == pygame.K_UP:
+                    force += 5
+                if event.key == pygame.K_DOWN:
+                    force -= 5
                 if event.key == pygame.K_SPACE:
-
+                    aim = False
+                    Vx = force * cos(angle * 2 * pi / 360)
+                    Vy = force * sin(angle * 2 * pi / 360)
+                    print(angle, Vx, Vy)
+                    fire = True
 
 
         tries_show = font.render(f'Tries: {tries}', False, 'Black')
@@ -59,10 +83,10 @@ while tries > 0:
                         player_rect.center,
                         (
                             player_rect.centerx + 200 * cos(angle * 2 * pi / 360),
-                            player_rect.centery + 200 * sin(angle * 2 * pi / 360)
+                            player_rect.centery - 200 * sin(angle * 2 * pi / 360)
                         ),
                         10
                         )
 
         pygame.display.update()
-        clock.tick(10)
+        clock.tick(60)
