@@ -3,8 +3,6 @@ import side_programms
 from sys import exit
 from math import sin, cos, pi
 
-
-
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption('Wściekłe Ptaki')
@@ -38,7 +36,7 @@ while tries > 0:
         screen.blit(player_surf, player_rect)
         screen.blit(enemy_surf, enemy_rect)
         pygame.display.update()
-        Vy -= 5
+        Vy -= 10
         clock.tick(10)
     while aim:
         for event in pygame.event.get():
@@ -66,11 +64,9 @@ while tries > 0:
                     print(angle, Vx, Vy)
                     fire = True
 
-
         tries_show = font.render(f'Tries: {tries}', False, 'Black')
         force_show = font.render(f'Force: {force}', False, 'Black')
         # angle_show = font.render(f'Angle: {angle}', False, 'Black')
-
 
         screen.blit(background, (0, 0))
         screen.blit(tries_show, (1000, 100))
@@ -78,15 +74,16 @@ while tries > 0:
         # screen.blit(angle_show, (1000, 300))
         screen.blit(player_surf, player_rect)
         screen.blit(enemy_surf, enemy_rect)
-        pygame.draw.line(screen,
-                        'Red',
-                        player_rect.center,
-                        (
-                            player_rect.centerx + 200 * cos(angle * 2 * pi / 360),
-                            player_rect.centery - 200 * sin(angle * 2 * pi / 360)
-                        ),
-                        10
-                        )
+        pygame.draw.line(
+            screen,
+            'Red',
+            player_rect.center,
+            (
+                player_rect.centerx + 200 * cos(angle * 2 * pi / 360),
+                player_rect.centery - 200 * sin(angle * 2 * pi / 360)
+            ),
+            width=10
+        )
 
         pygame.display.update()
         clock.tick(60)
