@@ -36,8 +36,8 @@ while tries > 0:
         screen.blit(player_surf, player_rect)
         screen.blit(enemy_surf, enemy_rect)
         pygame.display.update()
-        Vy -= 10
-        clock.tick(10)
+        Vy -= 5
+        clock.tick(60)
     while aim:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -54,9 +54,11 @@ while tries > 0:
                 if event.key == pygame.K_d:
                     angle = side_programms.change_angle('E', angle)
                 if event.key == pygame.K_UP:
-                    force += 5
+                    if force < 100:
+                        force += 5
                 if event.key == pygame.K_DOWN:
-                    force -= 5
+                    if force > 0:
+                        force -= 5
                 if event.key == pygame.K_SPACE:
                     aim = False
                     Vx = force * cos(angle * 2 * pi / 360)

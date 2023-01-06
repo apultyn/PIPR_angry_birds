@@ -1,4 +1,3 @@
-
 def change_angle(key, current_angle):
     angle = current_angle
     if key == 'E':
