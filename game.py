@@ -67,7 +67,12 @@ def play(level):
                     fire = False
                     if list_of_enemies != []:
                         aim = True
-                if player_rect.left < 0 or player_rect.right > 1280 or player_rect.top < 0 or player_rect.bottom > 720:
+                if (
+                    player_rect.left < 0 or
+                    player_rect.right > 1280 or
+                    player_rect.top < 0 or
+                    player_rect.bottom > 720
+                ):
                     fire = False
                     player_rect = player_surf.get_rect(center=(100, 360))
                     tries -= 1
@@ -138,14 +143,14 @@ def play(level):
     if tries == 0:
         screen.blit(background, (0, 0))
         text = font.render('You lost!', False, 'Black')
-        screen.blit(text, (640, 360))
+        screen.blit(text, center=(640, 360))
         pygame.display.update()
         pygame.time.wait(5000)
         pygame.quit()
     if list_of_enemies == []:
         screen.blit(background, (0, 0))
         text = font.render('You won!', False, 'Black')
-        screen.blit(text, (640, 360))
+        screen.blit(text, center=(640, 360))
         pygame.display.update()
         pygame.time.wait(5000)
         pygame.quit()
