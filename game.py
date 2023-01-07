@@ -61,7 +61,7 @@ def play(level):
                     exit()
             for enemy in list_of_enemies:
                 if player_rect.colliderect(enemy.rect()):
-                    print(f'Collided with {enemy}')
+                    # print(f'Collided with {enemy}')
                     list_of_enemies.remove(enemy)
                     player_rect = player_surf.get_rect(center=(100, 360))
                     fire = False
@@ -108,7 +108,7 @@ def play(level):
                         aim = False
                         Vx = force * cos(angle * 2 * pi / 360) / 2
                         Vy = force * sin(angle * 2 * pi / 360) / 2
-                        print(angle, Vx, Vy)
+                        # print(angle, Vx, Vy)
                         fire = True
 
             tries_show = font.render(f'Tries: {tries}', False, 'Black')
@@ -135,7 +135,17 @@ def play(level):
 
             pygame.display.update()
             clock.tick(60)
-    print('End')
-
-
-play(2)
+    if tries == 0:
+        screen.blit(background, (0, 0))
+        text = font.render('You lost!', False, 'Black')
+        screen.blit(text, (640, 360))
+        pygame.display.update()
+        pygame.time.wait(5000)
+        pygame.quit()
+    if list_of_enemies == []:
+        screen.blit(background, (0, 0))
+        text = font.render('You won!', False, 'Black')
+        screen.blit(text, (640, 360))
+        pygame.display.update()
+        pygame.time.wait(5000)
+        pygame.quit()
