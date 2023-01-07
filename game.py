@@ -27,6 +27,16 @@ def get_list_enemies(level):
         one = Enemy((1000, 360))
         two = Enemy((1000, 660))
         return [one, two]
+    if int(level) == 3:
+        one = Enemy((1000, 100))
+        two = Enemy((1000, 300))
+        three = Enemy((1000, 500))
+        return [one, two, three]
+    if int(level) == 4:
+        one = Enemy((1000, 100))
+        two = Enemy((1000, 600))
+        three = Enemy((100, 100))
+        return [one, two, three]
 
 
 def play(level):
@@ -35,10 +45,12 @@ def play(level):
     pygame.display.set_caption('Wściekłe Ptaki')
     clock = pygame.time.Clock()
 
-    player_surf = pygame.image.load('graphics/head.png').convert_alpha()
+    player_image = pygame.image.load('graphics/head.png').convert_alpha()
+    player_surf = pygame.transform.scale(player_image, (50, 50))
     player_rect = player_surf.get_rect(center=(100, 360))
 
-    enemy_surf = pygame.image.load('graphics/enemy.png').convert_alpha()
+    enemy_image = pygame.image.load('graphics/enemy.png').convert_alpha()
+    enemy_surf = pygame.transform.scale(enemy_image, (100, 100))
 
     list_of_enemies = get_list_enemies(level)
     for enemy in list_of_enemies:
@@ -121,15 +133,9 @@ def play(level):
             # angle_show = font.render(f'Angle: {angle}', False, 'Black')
 
             screen.blit(background, (0, 0))
-            screen.blit(tries_show, (1000, 100))
-            screen.blit(force_show, (1000, 200))
-            # screen.blit(angle_show, (1000, 300))
-            screen.blit(player_surf, player_rect)
-            for enemy in list_of_enemies:
-                screen.blit(enemy_surf, enemy.rect())
             pygame.draw.line(
                 screen,
-                'Red',
+                'Black',
                 player_rect.center,
                 (
                     player_rect.centerx + 200 * cos(angle * 2 * pi / 360),
@@ -137,6 +143,12 @@ def play(level):
                 ),
                 width=10
             )
+            screen.blit(tries_show, (1000, 100))
+            screen.blit(force_show, (1000, 200))
+            # screen.blit(angle_show, (1000, 300))
+            screen.blit(player_surf, player_rect)
+            for enemy in list_of_enemies:
+                screen.blit(enemy_surf, enemy.rect())
 
             pygame.display.update()
             clock.tick(60)
