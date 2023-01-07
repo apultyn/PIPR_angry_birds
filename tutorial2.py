@@ -9,7 +9,7 @@ pygame.display.set_caption('Wściekłe Ptaki')
 clock = pygame.time.Clock()
 
 player_surf = pygame.image.load('graphics/head.png').convert_alpha()
-player_rect = player_surf.get_rect(center=(200, 360))
+player_rect = player_surf.get_rect(center=(100, 360))
 
 enemy_surf = pygame.image.load('graphics/enemy.png').convert_alpha()
 enemy_rect = player_surf.get_rect(center=(1000, 360))
@@ -36,7 +36,7 @@ while tries > 0:
         screen.blit(player_surf, player_rect)
         screen.blit(enemy_surf, enemy_rect)
         pygame.display.update()
-        Vy -= 5
+        Vy -= 2
         clock.tick(60)
     while aim:
         for event in pygame.event.get():
@@ -61,8 +61,8 @@ while tries > 0:
                         force -= 5
                 if event.key == pygame.K_SPACE:
                     aim = False
-                    Vx = force * cos(angle * 2 * pi / 360)
-                    Vy = force * sin(angle * 2 * pi / 360)
+                    Vx = force * cos(angle * 2 * pi / 360) / 2
+                    Vy = force * sin(angle * 2 * pi / 360) / 2
                     print(angle, Vx, Vy)
                     fire = True
 
