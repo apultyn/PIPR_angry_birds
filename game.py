@@ -56,15 +56,17 @@ def play(level):
                         aim = True
             for barrier in list_of_barriers:
                 if player_rect.colliderect(barrier.rect()):
+                    fire = False
                     player_rect = player_surf.get_rect(center=(150, 600))
                     tries -= 1
-                    fire = False
-                    aim = True
+                    if tries > 0:
+                        aim = True
             if player_rect.colliderect(grass_rect):
+                fire = False
                 player_rect = player_surf.get_rect(center=(150, 600))
                 tries -= 1
-                fire = False
-                aim = True
+                if tries > 0:
+                    aim = True
             if (
                 player_rect.left < 0 or
                 player_rect.right > 1280 or
@@ -116,8 +118,8 @@ def play(level):
                         Vy = force * sin(angle * 2 * pi / 360)
                         fire = True
 
-            tries_show = font.render(f'Tries: {tries}', False, 'Black')
-            force_show = font.render(f'Force: {force}', False, 'Black')
+            tries_show = font.render(f'Tries left: {tries}', False, 'Black')
+            force_show = font.render(f'Force: {force}%', False, 'Black')
 
             screen.blit(background, (0, 0))
             screen.blit(grass_image, grass_rect)
