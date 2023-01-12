@@ -1,42 +1,10 @@
 import pygame
-import side_programms
+from side_programms import (
+    get_list_enemies,
+    change_angle
+)
 from sys import exit
 from math import sin, cos, pi
-
-
-class Enemy:
-    def __init__(self, pos):
-        self._pos = pos
-        self._rect = None
-
-    def __str__(self):
-        return str(self._pos)
-
-    def pos(self):
-        return self._pos
-
-    def rect(self):
-        return self._rect
-
-
-def get_list_enemies(level):
-    if int(level) == 1:
-        one = Enemy((1000, 360))
-        return [one]
-    if int(level) == 2:
-        one = Enemy((1000, 360))
-        two = Enemy((1000, 660))
-        return [one, two]
-    if int(level) == 3:
-        one = Enemy((1000, 100))
-        two = Enemy((1000, 300))
-        three = Enemy((1000, 500))
-        return [one, two, three]
-    if int(level) == 4:
-        one = Enemy((1000, 100))
-        two = Enemy((1000, 600))
-        three = Enemy((100, 100))
-        return [one, two, three]
 
 
 def play(level):
@@ -46,11 +14,11 @@ def play(level):
     clock = pygame.time.Clock()
 
     player_image = pygame.image.load('graphics/head.png').convert_alpha()
-    player_surf = pygame.transform.scale(player_image, (50, 50))
+    player_surf = pygame.transform.scale(player_image, (100, 100))
     player_rect = player_surf.get_rect(center=(100, 360))
 
     enemy_image = pygame.image.load('graphics/enemy.png').convert_alpha()
-    enemy_surf = pygame.transform.scale(enemy_image, (100, 100))
+    enemy_surf = pygame.transform.scale(enemy_image, (200, 200))
 
     list_of_enemies = get_list_enemies(level)
     for enemy in list_of_enemies:
@@ -108,13 +76,13 @@ def play(level):
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_w:
-                        angle = side_programms.change_angle('N', angle)
+                        angle = change_angle('N', angle)
                     if event.key == pygame.K_s:
-                        angle = side_programms.change_angle('S', angle)
+                        angle = change_angle('S', angle)
                     if event.key == pygame.K_a:
-                        angle = side_programms.change_angle('W', angle)
+                        angle = change_angle('W', angle)
                     if event.key == pygame.K_d:
-                        angle = side_programms.change_angle('E', angle)
+                        angle = change_angle('E', angle)
                     if event.key == pygame.K_UP:
                         if force < 100:
                             force += 5
