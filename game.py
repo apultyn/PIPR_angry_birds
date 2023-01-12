@@ -54,25 +54,28 @@ def play(level):
                     fire = False
                     if list_of_enemies != []:
                         aim = True
-                if (
-                    player_rect.colliderect(barrier.rect()) or
-                    player_rect.colliderect(grass_rect)
-                ):
+            for barrier in list_of_barriers:
+                if player_rect.colliderect(barrier.rect()):
                     player_rect = player_surf.get_rect(center=(150, 600))
                     tries -= 1
                     fire = False
                     aim = True
-                if (
-                    player_rect.left < 0 or
-                    player_rect.right > 1280 or
-                    player_rect.top < 0 or
-                    player_rect.bottom > 720
-                ):
-                    fire = False
-                    player_rect = player_surf.get_rect(center=(150, 600))
-                    tries -= 1
-                    if tries > 0:
-                        aim = True
+            if player_rect.colliderect(grass_rect):
+                player_rect = player_surf.get_rect(center=(150, 600))
+                tries -= 1
+                fire = False
+                aim = True
+            if (
+                player_rect.left < 0 or
+                player_rect.right > 1280 or
+                player_rect.top < 0 or
+                player_rect.bottom > 720
+            ):
+                fire = False
+                player_rect = player_surf.get_rect(center=(150, 600))
+                tries -= 1
+                if tries > 0:
+                    aim = True
 
             player_rect.centerx += Vx
             player_rect.centery -= Vy
@@ -152,4 +155,4 @@ def play(level):
     pygame.quit()
 
 
-play(5)
+play(7)

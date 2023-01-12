@@ -68,3 +68,14 @@ def get_list_objects(level):
         one = GameObject((1000, 500))
         barrier1 = GameObject((500, 545))
         return [one], [barrier1]
+    if int(level) == 6:
+        one = GameObject((800, 575))
+        barrier1 = GameObject((600, 545))
+        barrier2 = GameObject((1000, 545))
+        return [one], [barrier1, barrier2]
+    if int(level) == 7:
+        one = GameObject((800, 575))
+        two = GameObject((1200, 575))
+        barrier1 = GameObject((600, 545))
+        barrier2 = GameObject((1000, 545))
+        return [one, two], [barrier1, barrier2]
