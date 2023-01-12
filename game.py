@@ -15,12 +15,13 @@ def play(level):
 
     player_image = pygame.image.load('graphics/head.png').convert_alpha()
     player_surf = pygame.transform.scale(player_image, (50, 50))
-    player_rect = player_surf.get_rect(center=(100, 600))
+    player_rect = player_surf.get_rect(center=(150, 600))
 
     enemy_image = pygame.image.load('graphics/enemy.png').convert_alpha()
     enemy_surf = pygame.transform.scale(enemy_image, (75, 50))
 
     grass_image = pygame.image.load('graphics/grass.png').convert_alpha()
+    grass_rect = grass_image.get_rect(centerx=640, bottom=720)
 
     barrier_image = pygame.image.load('graphics/barrier.png').convert_alpha()
     barrier_surf = pygame.transform.scale(barrier_image, (50, 200))
@@ -49,10 +50,18 @@ def play(level):
             for enemy in list_of_enemies:
                 if player_rect.colliderect(enemy.rect()):
                     list_of_enemies.remove(enemy)
-                    player_rect = player_surf.get_rect(center=(100, 600))
+                    player_rect = player_surf.get_rect(center=(150, 600))
                     fire = False
                     if list_of_enemies != []:
                         aim = True
+                if (
+                    player_rect.colliderect(barrier.rect()) or
+                    player_rect.colliderect(grass_rect)
+                ):
+                    player_rect = player_surf.get_rect(center=(150, 600))
+                    tries -= 1
+                    fire = False
+                    aim = True
                 if (
                     player_rect.left < 0 or
                     player_rect.right > 1280 or
@@ -60,7 +69,7 @@ def play(level):
                     player_rect.bottom > 720
                 ):
                     fire = False
-                    player_rect = player_surf.get_rect(center=(100, 600))
+                    player_rect = player_surf.get_rect(center=(150, 600))
                     tries -= 1
                     if tries > 0:
                         aim = True
@@ -68,7 +77,7 @@ def play(level):
             player_rect.centerx += Vx
             player_rect.centery -= Vy
             screen.blit(background, (0, 0))
-            screen.blit(grass_image, (0, 0))
+            screen.blit(grass_image, grass_rect)
             screen.blit(player_surf, player_rect)
             for enemy in list_of_enemies:
                 screen.blit(enemy_surf, enemy.rect())
@@ -108,7 +117,7 @@ def play(level):
             force_show = font.render(f'Force: {force}', False, 'Black')
 
             screen.blit(background, (0, 0))
-            screen.blit(grass_image, (0, 0))
+            screen.blit(grass_image, grass_rect)
             pygame.draw.line(
                 screen,
                 'Black',
@@ -136,7 +145,7 @@ def play(level):
         text_surf = font.render('You won!', False, 'Black')
     text_rect = text_surf.get_rect(center=(640, 360))
     screen.blit(background, (0, 0))
-    screen.blit(grass_image, (0, 0))
+    screen.blit(grass_image, grass_rect)
     screen.blit(text_surf, text_rect)
     pygame.display.update()
     pygame.time.wait(3000)
