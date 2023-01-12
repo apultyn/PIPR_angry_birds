@@ -41,7 +41,6 @@ def play(level):
                     exit()
             for enemy in list_of_enemies:
                 if player_rect.colliderect(enemy.rect()):
-                    # print(f'Collided with {enemy}')
                     list_of_enemies.remove(enemy)
                     player_rect = player_surf.get_rect(center=(100, 360))
                     fire = False
@@ -93,12 +92,10 @@ def play(level):
                         aim = False
                         Vx = force * cos(angle * 2 * pi / 360) / 2
                         Vy = force * sin(angle * 2 * pi / 360) / 2
-                        # print(angle, Vx, Vy)
                         fire = True
 
             tries_show = font.render(f'Tries: {tries}', False, 'Black')
             force_show = font.render(f'Force: {force}', False, 'Black')
-            # angle_show = font.render(f'Angle: {angle}', False, 'Black')
 
             screen.blit(background, (0, 0))
             pygame.draw.line(
@@ -113,7 +110,6 @@ def play(level):
             )
             screen.blit(tries_show, (1000, 100))
             screen.blit(force_show, (1000, 200))
-            # screen.blit(angle_show, (1000, 300))
             screen.blit(player_surf, player_rect)
             for enemy in list_of_enemies:
                 screen.blit(enemy_surf, enemy.rect())
