@@ -68,7 +68,7 @@ def play(level):
             for enemy in list_of_enemies:
                 screen.blit(enemy_surf, enemy.rect())
             pygame.display.update()
-            Vy -= 2
+            Vy -= 4
             clock.tick(60)
         while aim:
             for event in pygame.event.get():
@@ -93,8 +93,8 @@ def play(level):
                             force -= 5
                     if event.key == pygame.K_SPACE:
                         aim = False
-                        Vx = force * cos(angle * 2 * pi / 360) / 2
-                        Vy = force * sin(angle * 2 * pi / 360) / 2
+                        Vx = force * cos(angle * 2 * pi / 360)
+                        Vy = force * sin(angle * 2 * pi / 360)
                         fire = True
 
             tries_show = font.render(f'Tries: {tries}', False, 'Black')
@@ -112,8 +112,9 @@ def play(level):
                 ),
                 width=10
             )
-            screen.blit(tries_show, (1000, 100))
-            screen.blit(force_show, (1000, 200))
+            player_rect.center = (100, 600)
+            screen.blit(tries_show, (1000, 50))
+            screen.blit(force_show, (1000, 100))
             screen.blit(player_surf, player_rect)
             for enemy in list_of_enemies:
                 screen.blit(enemy_surf, enemy.rect())
@@ -133,4 +134,4 @@ def play(level):
     pygame.quit()
 
 
-play(2)
+play(4)
