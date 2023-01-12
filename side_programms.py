@@ -3,27 +3,27 @@ def change_angle(key, current_angle):
     if key == 'E':
         if angle != 0 and angle != 180:
             if angle > 0 and angle < 180:
-                angle -= 10
+                angle -= 5
             else:
-                angle += 10
+                angle += 5
     if key == 'N':
         if angle != 90 and angle != 270:
             if angle < 270 and angle > 90:
-                angle -= 10
+                angle -= 5
             else:
-                angle += 10
+                angle += 5
     if key == 'W':
         if angle != 180 and angle != 0:
             if angle < 360 and angle > 180:
-                angle -= 10
+                angle -= 5
             else:
-                angle += 10
+                angle += 5
     if key == 'S':
         if angle != 270 and angle != 90:
             if angle > 90 and angle < 270:
-                angle += 10
+                angle += 5
             else:
-                angle -= 10
+                angle -= 5
     if angle < 0:
         angle += 360
     if angle >= 360:
@@ -48,16 +48,16 @@ class Enemy:
 
 def get_list_enemies(level):
     if int(level) == 1:
-        one = Enemy((1000, 360))
+        one = Enemy((1000, 500))
         return [one]
     if int(level) == 2:
-        one = Enemy((1000, 360))
-        two = Enemy((1000, 660))
+        one = Enemy((1000, 600))
+        two = Enemy((1000, 400))
         return [one, two]
     if int(level) == 3:
-        one = Enemy((1000, 100))
+        one = Enemy((1000, 500))
         two = Enemy((1000, 300))
-        three = Enemy((1000, 500))
+        three = Enemy((800, 400))
         return [one, two, three]
     if int(level) == 4:
         one = Enemy((1000, 100))
