@@ -1,4 +1,7 @@
 def change_angle(key, current_angle):
+    """
+    Calculates correct angle after inputed key
+    """
     angle = current_angle
     if key == 'E':
         if angle != 0 and angle != 180:
@@ -32,7 +35,16 @@ def change_angle(key, current_angle):
 
 
 class GameObject:
-    def __init__(self, pos):
+    """
+    Class GameObject. Contains atributes:
+
+    :param pos: contains starting position of object
+    type pos: tuple
+
+    :param rect: contains players rect from pygame
+    type rect: Rect
+    """
+    def __init__(self, pos=tuple):
         self._pos = pos
         self._rect = None
 
@@ -47,6 +59,9 @@ class GameObject:
 
 
 def get_list_objects(level):
+    """
+    Returns objects for level inputed
+    """
     if int(level) == 1:
         one = GameObject((1000, 500))
         return [one], []

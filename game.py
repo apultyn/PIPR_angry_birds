@@ -8,6 +8,9 @@ from math import sin, cos, pi
 
 
 def play(level):
+    """
+    Enables game engine and runs level
+    """
     pygame.init()
     screen = pygame.display.set_mode((1280, 720))
     pygame.display.set_caption('Wściekłe Ptaki')
