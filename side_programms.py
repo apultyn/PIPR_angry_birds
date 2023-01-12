@@ -46,21 +46,21 @@ class GameObject:
         return self._rect
 
 
-def get_list_enemies(level):
+def get_list_objects(level):
     if int(level) == 1:
         one = GameObject((1000, 500))
-        return [one]
+        return [one], []
     if int(level) == 2:
         one = GameObject((1000, 600))
         two = GameObject((1000, 400))
-        return [one, two]
+        return [one, two], []
     if int(level) == 3:
         one = GameObject((1000, 500))
         two = GameObject((1000, 300))
         three = GameObject((800, 400))
-        return [one, two, three]
+        return [one, two, three], []
     if int(level) == 4:
         one = GameObject((100, 100))
         two = GameObject((1180, 100))
         three = GameObject((1180, 620))
-        return [one, two, three]
+        return [one, two, three], []

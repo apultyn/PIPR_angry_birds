@@ -1,6 +1,6 @@
 import pygame
 from side_programms import (
-    get_list_enemies,
+    get_list_objects,
     change_angle
 )
 from sys import exit
@@ -22,7 +22,7 @@ def play(level):
 
     grass_image = pygame.image.load('graphics/grass.png').convert_alpha()
 
-    list_of_enemies = get_list_enemies(level)
+    list_of_enemies, list_of_barriers = get_list_objects(level)
     for enemy in list_of_enemies:
         enemy._rect = enemy_surf.get_rect(center=enemy.pos())
 
