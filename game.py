@@ -14,11 +14,13 @@ def play(level):
     clock = pygame.time.Clock()
 
     player_image = pygame.image.load('graphics/head.png').convert_alpha()
-    player_surf = pygame.transform.scale(player_image, (100, 100))
-    player_rect = player_surf.get_rect(center=(100, 360))
+    player_surf = pygame.transform.scale(player_image, (50, 50))
+    player_rect = player_surf.get_rect(center=(100, 600))
 
     enemy_image = pygame.image.load('graphics/enemy.png').convert_alpha()
-    enemy_surf = pygame.transform.scale(enemy_image, (200, 200))
+    enemy_surf = pygame.transform.scale(enemy_image, (75, 50))
+
+    grass_image = pygame.image.load('graphics/grass.png').convert_alpha()
 
     list_of_enemies = get_list_enemies(level)
     for enemy in list_of_enemies:
@@ -42,7 +44,7 @@ def play(level):
             for enemy in list_of_enemies:
                 if player_rect.colliderect(enemy.rect()):
                     list_of_enemies.remove(enemy)
-                    player_rect = player_surf.get_rect(center=(100, 360))
+                    player_rect = player_surf.get_rect(center=(100, 600))
                     fire = False
                     if list_of_enemies != []:
                         aim = True
@@ -53,7 +55,7 @@ def play(level):
                     player_rect.bottom > 720
                 ):
                     fire = False
-                    player_rect = player_surf.get_rect(center=(100, 360))
+                    player_rect = player_surf.get_rect(center=(100, 600))
                     tries -= 1
                     if tries > 0:
                         aim = True
@@ -61,6 +63,7 @@ def play(level):
             player_rect.centerx += Vx
             player_rect.centery -= Vy
             screen.blit(background, (0, 0))
+            screen.blit(grass_image, (0, 0))
             screen.blit(player_surf, player_rect)
             for enemy in list_of_enemies:
                 screen.blit(enemy_surf, enemy.rect())
@@ -98,6 +101,7 @@ def play(level):
             force_show = font.render(f'Force: {force}', False, 'Black')
 
             screen.blit(background, (0, 0))
+            screen.blit(grass_image, (0, 0))
             pygame.draw.line(
                 screen,
                 'Black',
@@ -122,7 +126,11 @@ def play(level):
         text_surf = font.render('You won!', False, 'Black')
     text_rect = text_surf.get_rect(center=(640, 360))
     screen.blit(background, (0, 0))
+    screen.blit(grass_image, (0, 0))
     screen.blit(text_surf, text_rect)
     pygame.display.update()
     pygame.time.wait(3000)
     pygame.quit()
+
+
+play(2)
