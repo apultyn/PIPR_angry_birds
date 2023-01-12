@@ -153,6 +153,3 @@ def play(level):
     pygame.display.update()
     pygame.time.wait(3000)
     pygame.quit()
-
-
-play(7)
