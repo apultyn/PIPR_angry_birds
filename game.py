@@ -22,13 +22,18 @@ def play(level):
 
     grass_image = pygame.image.load('graphics/grass.png').convert_alpha()
 
+    barrier_image = pygame.image.load('graphics/barrier.png').convert_alpha()
+    barrier_surf = pygame.transform.scale(barrier_image, (50, 200))
+
     list_of_enemies, list_of_barriers = get_list_objects(level)
     for enemy in list_of_enemies:
         enemy._rect = enemy_surf.get_rect(center=enemy.pos())
+    for barrier in list_of_barriers:
+        barrier._rect = barrier_surf.get_rect(center=barrier.pos())
 
     background = pygame.image.load('graphics/background.png')
     font = pygame.font.Font(None, 50)
-    tries = 5
+    tries = 10
     force = 50
     angle = 0
     aim = True
@@ -67,6 +72,8 @@ def play(level):
             screen.blit(player_surf, player_rect)
             for enemy in list_of_enemies:
                 screen.blit(enemy_surf, enemy.rect())
+            for barrier in list_of_barriers:
+                screen.blit(barrier_surf, barrier.rect())
             pygame.display.update()
             Vy -= 4
             clock.tick(60)
@@ -118,6 +125,8 @@ def play(level):
             screen.blit(player_surf, player_rect)
             for enemy in list_of_enemies:
                 screen.blit(enemy_surf, enemy.rect())
+            for barrier in list_of_barriers:
+                screen.blit(barrier_surf, barrier.rect())
 
             pygame.display.update()
             clock.tick(60)
@@ -134,4 +143,4 @@ def play(level):
     pygame.quit()
 
 
-play(4)
+play(5)
