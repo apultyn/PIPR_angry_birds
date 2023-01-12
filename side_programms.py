@@ -31,7 +31,7 @@ def change_angle(key, current_angle):
     return angle
 
 
-class Enemy:
+class GameObject:
     def __init__(self, pos):
         self._pos = pos
         self._rect = None
@@ -48,19 +48,19 @@ class Enemy:
 
 def get_list_enemies(level):
     if int(level) == 1:
-        one = Enemy((1000, 500))
+        one = GameObject((1000, 500))
         return [one]
     if int(level) == 2:
-        one = Enemy((1000, 600))
-        two = Enemy((1000, 400))
+        one = GameObject((1000, 600))
+        two = GameObject((1000, 400))
         return [one, two]
     if int(level) == 3:
-        one = Enemy((1000, 500))
-        two = Enemy((1000, 300))
-        three = Enemy((800, 400))
+        one = GameObject((1000, 500))
+        two = GameObject((1000, 300))
+        three = GameObject((800, 400))
         return [one, two, three]
     if int(level) == 4:
-        one = Enemy((1000, 100))
-        two = Enemy((1000, 600))
-        three = Enemy((100, 100))
+        one = GameObject((100, 100))
+        two = GameObject((1180, 100))
+        three = GameObject((1180, 620))
         return [one, two, three]
