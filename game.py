@@ -29,19 +29,22 @@ def play(level):
     barrier_image = pygame.image.load('graphics/barrier.png').convert_alpha()
     barrier_surf = pygame.transform.scale(barrier_image, (50, 200))
 
+    background = pygame.image.load('graphics/background.png')
+
+    font = pygame.font.Font(None, 50)
+
     list_of_enemies, list_of_barriers = get_list_objects(level)
     for enemy in list_of_enemies:
         enemy._rect = enemy_surf.get_rect(center=enemy.pos())
     for barrier in list_of_barriers:
         barrier._rect = barrier_surf.get_rect(center=barrier.pos())
 
-    background = pygame.image.load('graphics/background.png')
-    font = pygame.font.Font(None, 50)
     tries = 10
     force = 50
     angle = 0
     aim = True
     fire = False
+    win = False
     Vx = 0
     Vy = 0
     while tries > 0 and list_of_enemies != []:
@@ -93,7 +96,7 @@ def play(level):
                 screen.blit(barrier_surf, barrier.rect())
             pygame.display.update()
             Vy -= 4
-            clock.tick(60)
+            clock.tick(30)
         while aim:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -146,11 +149,12 @@ def play(level):
                 screen.blit(barrier_surf, barrier.rect())
 
             pygame.display.update()
-            clock.tick(60)
+            clock.tick(30)
     if tries == 0:
         text_surf = font.render('You lost!', False, 'Black')
     if list_of_enemies == []:
         text_surf = font.render('You won!', False, 'Black')
+        win = True
     text_rect = text_surf.get_rect(center=(640, 360))
     screen.blit(background, (0, 0))
     screen.blit(grass_image, grass_rect)
@@ -158,3 +162,4 @@ def play(level):
     pygame.display.update()
     pygame.time.wait(3000)
     pygame.quit()
+    return win
