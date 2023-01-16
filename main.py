@@ -37,6 +37,7 @@ def main():
                 print(f"Level {level}")
         print("Enter 0 to exit")
         level = input()
+
         if level == '0':
             work = False
         elif level not in levels:

@@ -91,3 +91,10 @@ def test_switch_350_10():
     angle = change_angle('N', 355)
     angle = change_angle('N', angle)
     assert angle == 5
+
+
+def test_not_switching():
+    angle = change_angle('N', 85)
+    angle = change_angle('N', angle)
+    angle = change_angle('S', angle)
+    assert angle == 90

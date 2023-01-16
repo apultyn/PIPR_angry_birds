@@ -47,6 +47,7 @@ def play(level):
     win = False
     Vx = 0
     Vy = 0
+
     while tries > 0 and list_of_enemies != []:
         while fire:
             for event in pygame.event.get():

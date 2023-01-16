@@ -3,30 +3,35 @@ def change_angle(key, current_angle):
     Calculates correct angle after inputed key
     """
     angle = current_angle
+
     if key == 'E':
         if angle != 0 and angle != 180:
             if angle > 0 and angle < 180:
                 angle -= 5
             else:
                 angle += 5
+
     if key == 'N':
         if angle != 90 and angle != 270:
             if angle < 270 and angle > 90:
                 angle -= 5
             else:
                 angle += 5
+
     if key == 'W':
         if angle != 180 and angle != 0:
             if angle < 360 and angle > 180:
                 angle -= 5
             else:
                 angle += 5
+
     if key == 'S':
         if angle != 270 and angle != 90:
             if angle > 90 and angle < 270:
                 angle += 5
             else:
                 angle -= 5
+
     if angle < 0:
         angle += 360
     if angle >= 360:
