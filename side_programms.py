@@ -63,15 +63,15 @@ def get_list_objects(level):
     Returns objects for level inputed
     """
     if int(level) == 1:
-        one = GameObject((1000, 500))
+        one = GameObject((1000, 600))
         return [one], []
     if int(level) == 2:
         one = GameObject((1000, 600))
         two = GameObject((1000, 400))
         return [one, two], []
     if int(level) == 3:
-        one = GameObject((1000, 500))
-        two = GameObject((1000, 300))
+        one = GameObject((1000, 600))
+        two = GameObject((1000, 200))
         three = GameObject((800, 400))
         return [one, two, three], []
     if int(level) == 4:
@@ -80,17 +80,17 @@ def get_list_objects(level):
         three = GameObject((1180, 620))
         return [one, two, three], []
     if int(level) == 5:
-        one = GameObject((1000, 500))
+        one = GameObject((1000, 600))
         barrier1 = GameObject((500, 545))
         return [one], [barrier1]
     if int(level) == 6:
-        one = GameObject((800, 575))
+        one = GameObject((800, 600))
         barrier1 = GameObject((600, 545))
         barrier2 = GameObject((1000, 545))
         return [one], [barrier1, barrier2]
     if int(level) == 7:
-        one = GameObject((800, 575))
-        two = GameObject((1200, 575))
+        one = GameObject((800, 600))
+        two = GameObject((1200, 600))
         barrier1 = GameObject((600, 545))
         barrier2 = GameObject((1000, 545))
         return [one, two], [barrier1, barrier2]
