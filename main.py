@@ -3,10 +3,16 @@ import os
 
 
 def cls():
+    """
+    Clears console
+    """
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def main():
+    """
+    Runs whole project
+    """
     game_percentage = 0
 
     levels = {
