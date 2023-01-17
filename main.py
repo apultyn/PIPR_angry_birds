@@ -33,7 +33,9 @@ def main():
         for level in levels:
             if levels[level]:
                 levels_completed += 1
+
         game_percentage = int(levels_completed * 100 / len(levels))
+
         print(f"Game completed: {game_percentage}%")
         print("Select level:")
         for level in levels:
@@ -42,8 +44,8 @@ def main():
             else:
                 print(f"Level {level}")
         print("Enter 0 to exit")
-        level = input()
 
+        level = input()
         if level == '0':
             work = False
         elif level not in levels:
